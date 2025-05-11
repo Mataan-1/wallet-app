@@ -1,22 +1,20 @@
 import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ArrowUpRight, ArrowDownRight, Plus, Wallet, CircleAlert as AlertCircle } from 'lucide-react-native';
+import { ArrowUpRight, Plus, Wallet } from 'lucide-react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { colors } from '@/constants/colors';
 import { formatCurrency } from '@/utils/formatters';
 import { mockCards } from '@/data/mockCards';
 import { mockTransactions } from '@/data/mockTransactions';
-import { mockInsights } from '@/data/mockInsights';
 import CardCarousel from '@/components/home/CardCarousel';
-import InsightCard from '@/components/home/InsightCard';
+import InsightSection from '@/components/home/InsightSection';
 import TransactionItem from '@/components/TransactionItem';
 
 export default function HomeScreen() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [cards, setCards] = useState(mockCards);
   const [recentTransactions, setRecentTransactions] = useState(mockTransactions.slice(0, 4));
-  const [insights, setInsights] = useState(mockInsights);
   const [totalBalance, setTotalBalance] = useState(0);
 
   useEffect(() => {
@@ -78,25 +76,7 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Insights</Text>
-          </View>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.insightsContainer}
-          >
-            {insights.map((insight, index) => (
-              <InsightCard 
-                key={index}
-                title={insight.title}
-                description={insight.description}
-                type={insight.type}
-              />
-            ))}
-          </ScrollView>
-        </View>
+        <InsightSection />
 
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
@@ -214,8 +194,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.primary[700],
     marginLeft: 8,
-  },
-  insightsContainer: {
-    paddingBottom: 8,
   },
 });
