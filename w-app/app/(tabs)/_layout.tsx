@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { Platform } from 'react-native';
-import { Chrome as Home, CreditCard, ChartBar as BarChart3, PiggyBank, MessageCircle, Send } from 'lucide-react-native';
+import { Home, ArrowLeftRight, Send, User } from 'lucide-react-native';
 import { colors } from '@/constants/colors';
 import TabBar from '@/components/TabBar';
 
@@ -38,11 +38,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="cards"
+        name="transactions"
         options={{
-          title: 'Cards',
+          title: 'Transactions',
           tabBarIcon: ({ color, size }) => (
-            <CreditCard size={size} color={color} />
+            <ArrowLeftRight size={size} color={color} />
           ),
         }}
       />
@@ -56,29 +56,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="transactions"
+        name="profile"
         options={{
-          title: 'Transactions',
+          title: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <BarChart3 size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="budget"
-        options={{
-          title: 'Budget',
-          tabBarIcon: ({ color, size }) => (
-            <PiggyBank size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="ai-advisor"
-        options={{
-          title: 'AI Advisor',
-          tabBarIcon: ({ color, size }) => (
-            <MessageCircle size={size} color={color} />
+            <User size={size} color={color} />
           ),
         }}
       />
